@@ -2,8 +2,6 @@ require'nvim-treesitter.configs'.setup {
   -- A list of parser names, or "all" (the five listed parsers should always be installed)
   ensure_installed = {
       "lua",
-      "vim",
-      "vimdoc",
       "query",
       "python",
       "scala",
@@ -11,9 +9,7 @@ require'nvim-treesitter.configs'.setup {
       "json",
       "json5",
       "markdown",
-      "markdown_inline",
       "regex",
-      "rust",
       "sql",
       "swift",
       "toml",

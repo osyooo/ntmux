@@ -3,10 +3,13 @@ vim.g.mapleader = " "
 -- buffer
 vim.keymap.set("n", "<leader>]", vim.cmd.bnext)
 vim.keymap.set("n", "<leader>[", vim.cmd.bprevious)
+vim.keymap.set("n", "<leader>W", vim.cmd.bdelete)
 
 -- NvimTree
 vim.keymap.set("n", "<leader>pv", vim.cmd.NvimTreeFocus)
 vim.keymap.set("n", "<leader>pc", vim.cmd.NvimTreeClose)
+
+-- Possession
 
 -- Primgean remaps
 vim.keymap.set("n", "J", "mzJ`z")
