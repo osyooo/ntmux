@@ -53,6 +53,7 @@ return {
             tb.live_grep({ default_text = text })
         end, opts)
 
+
     end
 }
 

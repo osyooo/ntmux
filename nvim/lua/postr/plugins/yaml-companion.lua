@@ -1,4 +1,4 @@
--- from this guide https://www.arthurkoziel.com/json-schemas-in-neovim/
+-- -- from this guide https://www.arthurkoziel.com/json-schemas-in-neovim/
 return {
     "someone-stole-my-name/yaml-companion.nvim",
     dependencies = {

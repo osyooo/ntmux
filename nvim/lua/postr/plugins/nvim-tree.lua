@@ -16,8 +16,11 @@ return {
 
         -- configure nvim-tree
         nvimtree.setup({
+            -- diagnostic = {
+            --     enable = true,
+            --     },
             view = {
-                width = 40,
+                width = 30,
                 relativenumber = true,
             },
             -- change folder arrow icons
