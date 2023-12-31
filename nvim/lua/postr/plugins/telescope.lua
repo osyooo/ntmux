@@ -47,7 +47,7 @@ return {
         local tb = require("telescope.builtin")
         local opts = { noremap = true, silent = true}
 
-        -- keymap.set('n', '<leader>G', ':Telescope live_grep<cr>', opts)
+        keymap.set('n', '<leader>G', ':Telescope live_grep<cr>', opts)
         keymap.set('v', '<leader>G', function()
             local text = vim.getVisualSelection()
             tb.live_grep({ default_text = text })

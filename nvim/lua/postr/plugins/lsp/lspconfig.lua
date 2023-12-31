@@ -12,6 +12,7 @@ return {
     -- import cmp-nvim-lsp plugin
     local cmp_nvim_lsp = require("cmp_nvim_lsp")
 
+
     local keymap = vim.keymap -- for conciseness
 
     local opts = { noremap = true, silent = true }
@@ -96,6 +97,59 @@ return {
           },
         },
       },
+    })
+    
+    -- configure yamls
+    lspconfig["yamlls"].setup({
+      settings = {
+        yaml = {
+          schemaStore = {
+            enable = false,
+            url = "",
+          },
+          schemas = require('schemastore').yaml.schemas {
+            -- select subset from the JSON schema catalog
+            select = {
+              'kustomization.yaml',
+              'docker-compose.yml'
+            },
+
+            -- additional schemas (not in the catalog)
+            extra = {
+              url = 'https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/argoproj.io/application_v1alpha1.json',
+              name = 'Argo CD Application',
+              fileMatch = 'argocd-application.yaml'
+            }
+          }
+        }
+      }})
+
+    -- configure json server
+    lspconfig["jsonls"].setup({
+      settings = {
+        json = {
+          schemas = require('schemastore').json.schemas({
+            select = {
+              'Renovate',
+              'GitHub Workflow Template Properties'
+            }
+          }),
+          validate = { enable = true },
+        },
+      }})
+
+    -- configure toml server
+    lspconfig["taplo"].setup({
+      settings = {
+        evenBetterToml = {
+          schema = {
+            -- add additional schemas
+            associations = {
+              ['example\\.toml$'] = 'https://json.schemastore.org/example.json',
+            }
+          }
+        }
+      }
     })
 
   end,

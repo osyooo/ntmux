@@ -30,6 +30,7 @@ return {
         "lua_ls",
         "pyright",
         "jsonls",
+        "yamlls",
       },
       -- auto-install configured servers (with lspconfig)
       automatic_installation = true, -- not the same as ensure_installed
@@ -39,8 +40,7 @@ return {
       ensure_installed = {
         "stylua", -- lua formatter
         "isort", -- python formatter
-        -- "black", -- python formatter
-        "pylint", -- python linter,
+        "ruff", -- python linter,
         "jsonlint", --json linter,
         "jq",
       },
