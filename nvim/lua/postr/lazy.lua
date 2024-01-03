@@ -10,7 +10,6 @@ if not vim.loop.fs_stat(lazypath) then
   })
 end
 vim.opt.rtp:prepend(lazypath)
--- vim.cmd([[ setlocal spelllang=ru spell ]])
 
 require("lazy").setup({
     { import =  "postr.plugins" },
@@ -18,7 +17,7 @@ require("lazy").setup({
 },
     {
         install = {
-            colorscheme = { "catppuccin-frappe" },
+             colorscheme = { "catppuccin-frappe" },
         },
         checker = {
            enabled = true,
