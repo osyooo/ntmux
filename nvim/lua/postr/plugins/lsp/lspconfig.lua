@@ -138,19 +138,19 @@ return {
         },
       }})
 
-    -- configure toml server
-    lspconfig["taplo"].setup({
-      settings = {
-        evenBetterToml = {
-          schema = {
-            -- add additional schemas
-            associations = {
-              ['example\\.toml$'] = 'https://json.schemastore.org/example.json',
-            }
-          }
-        }
-      }
-    })
+    -- -- configure toml server
+    -- lspconfig["taplo"].setup({
+    --   settings = {
+    --     evenBetterToml = {
+    --       schema = {
+    --         -- add additional schemas
+    --         associations = {
+    --           ['example\\.toml$'] = 'https://json.schemastore.org/example.json',
+    --         }
+    --       }
+    --     }
+    --   }
+    -- })
 
   end,
 }

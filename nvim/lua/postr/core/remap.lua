@@ -8,8 +8,10 @@ keymap.set("n", "<leader>]", vim.cmd.bnext)
 keymap.set("n", "<leader>[", vim.cmd.bprevious)
 keymap.set("n", "<leader>W", vim.cmd.bdelete)
 
--- copy all
+-- copy all and select all
+keymap.set("n", "<D-a>", "gg<S-v>G")
 keymap.set('n', '<leader>Ya', "<cmd>%y+<CR>", { noremap = true }, { silent = true })
+keymap.set({'n', 'v'}, "<D-c>", [[+y]])
 
 
 -- use jk to exit insert mode

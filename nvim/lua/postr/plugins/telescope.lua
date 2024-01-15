@@ -8,10 +8,17 @@ return {
 	config = function()
 		local telescope = require("telescope")
 		local actions = require("telescope.actions")
+		local tb = require("telescope.builtin")
 
 		telescope.setup({
+			extensions = {},
+			pickers = {
+				find_files = {
+					find_command = { "rg", "--files", "-L", "--hidden", "--glob", "!**/.git/*" },
+				},
+			},
 			defaults = {
-				path_display = { "truncate " },
+				path_display = { "smart" },
 				mappings = {
 					i = {
 						["<C-k>"] = actions.move_selection_previous, -- move to prev result
@@ -27,8 +34,12 @@ return {
 
 		keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<cr>", { desc = "Fuzzy find files in cwd" })
 		keymap.set("n", "<leader>fr", "<cmd>Telescope oldfiles<cr>", { desc = "Fuzzy find recent files" })
-		keymap.set("n", "<leader>fs", "<cmd>Telescope live_grep<cr>", { desc = "Find string in cwd" })
-		keymap.set("n", "<leader>fc", "<cmd>Telescope grep_string<cr>", { desc = "Find string under cursor in cwd" })
+		keymap.set("n", "<leader>fs", function()
+			tb.live_grep({ additional_args = { "-L" } })
+		end, { desc = "Find string in cwd" })
+		keymap.set("n", "<leader>fc", function()
+			tb.grep_string({ additional_args = { "-L" } })
+		end, { desc = "Find string under cursor in cwd" })
 
 		-- Search visual text
 		function vim.getVisualSelection()
@@ -44,10 +55,11 @@ return {
 			end
 		end
 
-		local tb = require("telescope.builtin")
 		local opts = { noremap = true, silent = true }
 
-		keymap.set("n", "<leader>G", ":Telescope live_grep<cr>", opts)
+		keymap.set("n", "<leader>G", function()
+			tb.live_grep({ additional_args = { "-L" } })
+		end, opts)
 		keymap.set("v", "<leader>G", function()
 			local text = vim.getVisualSelection()
 			tb.live_grep({ default_text = text })
