@@ -1,0 +1,18 @@
+5. git icons + see git changes
+6. research mini 
+7. add autocommand when close nvim to close tree
+8. to test https://github.com/vim-test/vim-test
+
+
+
+
+
+https://github.com/chrisgrieser/nvim-kickstart-python
+
+https://github.com/bcampolo/nvim-starter-kit
+
+https://github.com/Dan7h3x/NvimPy
+
+https://github.com/wookayin/dotfiles
+
+https://github.com/nvim-lua/kickstart.nvim
