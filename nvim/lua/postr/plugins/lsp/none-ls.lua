@@ -8,9 +8,9 @@ return {
 			sources = {
 				null_ls.builtins.formatting.stylua,
 				null_ls.builtins.formatting.isort,
-				null_ls.builtins.diagnostics.ruff,
-        null_ls.builtins.completion.spell,
-        null_ls.builtins.diagnostics.write_good,
+				-- null_ls.builtins.diagnostics.ruff,
+				null_ls.builtins.completion.spell,
+				null_ls.builtins.diagnostics.write_good,
 			},
 		})
 

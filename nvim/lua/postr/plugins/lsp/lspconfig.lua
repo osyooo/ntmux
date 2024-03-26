@@ -12,7 +12,6 @@ return {
     -- import cmp-nvim-lsp plugin
     local cmp_nvim_lsp = require("cmp_nvim_lsp")
 
-
     local keymap = vim.keymap -- for conciseness
 
     local opts = { noremap = true, silent = true }
@@ -71,13 +70,29 @@ return {
       vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
     end
 
-
     -- configure python server
     lspconfig["pyright"].setup({
+      filetypes = { "python" },
+      settings = {
+        python = {
+          analysis = {
+            autoImportCompletions = true,
+            diagnosticMode = "workspace",
+            -- extraPaths = "" maybe for externallib
+          },
+        },
+      },
       capabilities = capabilities,
       on_attach = on_attach,
       root_dir = lspconfig.util.root_pattern("~/Desktop/Autotests/sandbox_api_sync_lib/"),
     })
+
+    -- lspconfig["jedi_language_server"].setup({
+    --   filetypes = { "python" },
+    --   cmd = { "jedi-language-server" },
+    --   capabilities = capabilities,
+    --   on_attach = on_attach,
+    -- })
 
     -- configure lua server (with special settings)
     lspconfig["lua_ls"].setup({
@@ -99,7 +114,7 @@ return {
         },
       },
     })
-    
+
     -- configure yamls
     lspconfig["yamlls"].setup({
       settings = {
@@ -108,51 +123,51 @@ return {
             enable = false,
             url = "",
           },
-          schemas = require('schemastore').yaml.schemas {
+          schemas = require("schemastore").yaml.schemas({
             -- select subset from the JSON schema catalog
             select = {
-              'kustomization.yaml',
-              'docker-compose.yml'
+              "kustomization.yaml",
+              "docker-compose.yml",
             },
 
             -- additional schemas (not in the catalog)
             extra = {
-              url = 'https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/argoproj.io/application_v1alpha1.json',
-              name = 'Argo CD Application',
-              fileMatch = 'argocd-application.yaml'
-            }
-          }
-        }
-      }})
+              url = "https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/argoproj.io/application_v1alpha1.json",
+              name = "Argo CD Application",
+              fileMatch = "argocd-application.yaml",
+            },
+          }),
+        },
+      },
+    })
 
     -- configure json server
     lspconfig["jsonls"].setup({
       settings = {
         json = {
-          schemas = require('schemastore').json.schemas({
+          schemas = require("schemastore").json.schemas({
             select = {
-              'Renovate',
-              'GitHub Workflow Template Properties'
-            }
+              "Renovate",
+              "GitHub Workflow Template Properties",
+            },
           }),
           validate = { enable = true },
         },
-      }})
+      },
+    })
 
-    -- -- configure toml server
-    -- lspconfig["taplo"].setup({
-    --   settings = {
-    --     evenBetterToml = {
-    --       schema = {
-    --         -- add additional schemas
-    --         associations = {
-    --           ['example\\.toml$'] = 'https://json.schemastore.org/example.json',
-    --         }
-    --       }
-    --     }
-    --   }
-    -- })
-
+    -- configure toml server
+    lspconfig["taplo"].setup({
+      settings = {
+        evenBetterToml = {
+          schema = {
+            -- add additional schemas
+            associations = {
+              ["example\\.toml$"] = "https://json.schemastore.org/example.json",
+            },
+          },
+        },
+      },
+    })
   end,
 }
-

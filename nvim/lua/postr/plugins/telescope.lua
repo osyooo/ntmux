@@ -32,14 +32,37 @@ return {
 		-- set keymaps
 		local keymap = vim.keymap
 
-		keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<cr>", { desc = "Fuzzy find files in cwd" })
-		keymap.set("n", "<leader>fr", "<cmd>Telescope oldfiles<cr>", { desc = "Fuzzy find recent files" })
-		keymap.set("n", "<leader>fs", function()
-			tb.live_grep({ additional_args = { "-L" } })
-		end, { desc = "Find string in cwd" })
-		keymap.set("n", "<leader>fc", function()
-			tb.grep_string({ additional_args = { "-L" } })
-		end, { desc = "Find string under cursor in cwd" })
+		keymap.set("n", "<leader>sh", tb.help_tags, { desc = "[S]earch [H]elp" })
+		keymap.set("n", "<leader>sf", tb.find_files, { desc = "[S]earch [F]iles" })
+		keymap.set("n", "<leader>sg", function() tb.live_grep({ additional_args = { "-L" } }) end, { desc = "[S]earch by [G]rep" })
+		keymap.set("n", "<leader>sw", function() tb.grep_string({ additional_args = { "-L" } }) end, { desc = "[S]earch current [W]orld" })
+		keymap.set("n", "<leader>sk", tb.keymaps, { desc = "[S]earch [K]eymaps" })
+		keymap.set("n", "<leader>ss", tb.builtin, { desc = "[S]earch [S]elect Telescope" })
+		keymap.set("n", "<leader>sd", tb.diagnostics, { desc = "[S]earch [D]iagnostics" })
+		keymap.set("n", "<leader><leader>", tb.buffers, { desc = "[ ] Find existing buffers" })
+
+    -- Slightly advanced example of overriding default behavior and theme
+    keymap.set('n', '<leader>/', function()
+        -- You can pass additional configuration to telescope to change theme, layout, etc.
+        tb.current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
+          winblend = 10,
+          previewer = false,
+        })
+      end, { desc = '[/] Fuzzily search in current buffer' })
+
+    -- Also possible to pass additional configuration options.
+      --  See `:help telescope.builtin.live_grep()` for information about particular keys
+      keymap.set('n', '<leader>s/', function()
+        tb.live_grep {
+          grep_open_files = true,
+          prompt_title = 'Live Grep in Open Files',
+        }
+      end, { desc = '[S]earch [/] in Open Files' })
+
+      -- Shortcut for searching your neovim configuration files
+      keymap.set('n', '<leader>sn', function()
+        tb.find_files { cwd = vim.fn.stdpath 'config' }
+      end, { desc = '[S]earch [N]eovim files' })
 
 		-- Search visual text
 		function vim.getVisualSelection()
@@ -57,10 +80,10 @@ return {
 
 		local opts = { noremap = true, silent = true }
 
-		keymap.set("n", "<leader>G", function()
+		keymap.set("n", "<leader>S", function()
 			tb.live_grep({ additional_args = { "-L" } })
 		end, opts)
-		keymap.set("v", "<leader>G", function()
+		keymap.set("v", "<leader>S", function()
 			local text = vim.getVisualSelection()
 			tb.live_grep({ default_text = text })
 		end, opts)
