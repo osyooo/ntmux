@@ -54,7 +54,7 @@ return {
 					".ruff_cache",
 					".pytest_cache",
 					"__pycache__",
-          ".git",
+          -- ".git",
 				},
 			},
 			git = {

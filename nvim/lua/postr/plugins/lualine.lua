@@ -23,9 +23,9 @@ return {
           -- { "fileformat" },
           -- { "filetype" },
         },
-      lualine_y = {
-          {"swenv"}
-        }
+      -- lualine_y = {
+      --     {"swenv"}
+      --   }
       },
     })
   end,

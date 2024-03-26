@@ -16,9 +16,6 @@ require("lazy").setup({
     { import = "postr.plugins.lsp" },
 },
     {
-        install = {
-             colorscheme = { "catppuccin-frappe" },
-        },
         checker = {
            enabled = true,
            notify = false,

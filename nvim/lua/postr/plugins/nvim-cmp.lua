@@ -38,6 +38,10 @@ return {
         ["<Tab>"] = cmp.mapping.confirm({
                     behavior = cmp.ConfirmBehavior.Insert,
                     select = true }),
+        ["<CR>"] = cmp.mapping.confirm({
+                    behavior = cmp.ConfirmBehavior.Insert,
+                    select = true }),
+
       }),
 
       -- sources for autocompletion
