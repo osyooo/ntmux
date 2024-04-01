@@ -7,7 +7,7 @@ return {
 	config = function()
 		local dap = require("dap")
     local dap_ui = require("dap.ui.widgets")
-    -- vim.fn.sign_define("DapBreakpoint", { text = "🛑", texthl = "", linehl = "", numhl = "" })
+    vim.fn.sign_define("DapBreakpoint", { text = "🛑", texthl = "", linehl = "", numhl = "" })
 
 		-- keymaps
 		vim.keymap.set("n", "<F5>", function() dap.continue() end)
