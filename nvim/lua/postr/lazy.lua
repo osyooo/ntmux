@@ -12,15 +12,16 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-  { import = "postr.plugins" },
-  { import = "postr.plugins.lsp" },
-  { import = "postr.plugins.python" },
-}, {
-  install = {
-    colorscheme = { "catppuccin-frappe" },
-  },
-  checker = {
-    enabled = true,
-    notify = false,
-  },
-})
+    { import =  "postr.plugins" },
+    { import = "postr.plugins.lsp" },
+    { import = "postr.plugins.python" },
+},
+    {
+        install = {
+             colorscheme = { "catppuccin-frappe" },
+        },
+        checker = {
+           enabled = true,
+           notify = false,
+        },
+    })
