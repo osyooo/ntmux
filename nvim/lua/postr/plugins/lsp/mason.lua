@@ -12,6 +12,7 @@ return {
 
 		-- import mason-lspconfig
 		local mason_lspconfig = require("mason-lspconfig")
+
 		local mason_tool_installer = require("mason-tool-installer")
 		local mason_dap = require("mason-nvim-dap")
     local mason_dap = require("mason-nvim-dap")

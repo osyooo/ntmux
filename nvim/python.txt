@@ -1,9 +1,5 @@
-5. git icons + see git changes
-6. research mini 
 7. add autocommand when close nvim to close tree
 8. to test https://github.com/vim-test/vim-test
-
-
 
 
 

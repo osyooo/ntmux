@@ -53,6 +53,7 @@ return {
 					-- Command line arguments for runner
 					-- Can also be a function to return dynamic values
 					args = { "-sv" },  -- alluredir
+					args = { "-sv", "--alluredir=./results" },
 					-- Runner to use. Will use pytest if available by default.
 					-- Can be a function to return dynamic value.
 					runner = "pytest",

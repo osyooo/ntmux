@@ -17,6 +17,9 @@ require("lazy").setup({
     { import = "postr.plugins.python" },
 },
     {
+        install = {
+             colorscheme = { "catppuccin-frappe" },
+        },
         checker = {
            enabled = true,
            notify = false,
