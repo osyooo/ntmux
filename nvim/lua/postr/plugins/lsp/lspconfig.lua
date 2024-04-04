@@ -87,6 +87,24 @@ return {
 			on_attach = on_attach,
 			-- root_dir = lspconfig.util.root_pattern("~/Desktop/Autotests/sandbox_api_sync_lib/"),
 		})
+    -- configure python server
+    lspconfig["pyright"].setup({
+      filetypes = { "python" },
+      settings = {
+        python = {
+          analysis = {
+            autoImportCompletions = true,
+            diagnosticMode = "workspace",
+            -- extraPaths = { "~/Desktop/Autotests/api_sync_lib" },
+            autoSearchPaths = true,
+
+
+          },
+        },
+      },
+      capabilities = capabilities,
+      on_attach = on_attach,
+    })
 
 		-- lspconfig["jedi_language_server"].setup({
 		--   filetypes = { "python" },
