@@ -78,7 +78,10 @@ return {
           analysis = {
             autoImportCompletions = true,
             diagnosticMode = "workspace",
-            -- extraPaths = "" maybe for externallib
+            -- extraPaths = { "~/Desktop/Autotests/api_sync_lib" },
+            autoSearchPaths = true,
+
+
           },
         },
       },
