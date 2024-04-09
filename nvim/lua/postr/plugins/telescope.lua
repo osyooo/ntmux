@@ -32,14 +32,15 @@ return {
 		-- set keymaps
 		local keymap = vim.keymap
 
-		keymap.set("n", "<leader>sh", tb.help_tags, { desc = "[S]earch [H]elp" })
+		keymap.set("n", "<leader>fh", tb.help_tags, { desc = "[F]ind [H]elp" })
 		keymap.set("n", "<leader>sf", tb.find_files, { desc = "[S]earch [F]iles" })
+		keymap.set("n", "<leader><leader>", function() tb.live_grep({ additional_args = { "-L" } }) end, { desc = "[S]earch by [G]rep" })
 		keymap.set("n", "<leader>sg", function() tb.live_grep({ additional_args = { "-L" } }) end, { desc = "[S]earch by [G]rep" })
-		keymap.set("n", "<leader>sw", function() tb.grep_string({ additional_args = { "-L" } }) end, { desc = "[S]earch current [W]orld" })
+		keymap.set("n", "<leader>ss", function() tb.grep_string({ additional_args = { "-L" } }) end, { desc = "[S]earch current [W]orld" })
 		keymap.set("n", "<leader>sk", tb.keymaps, { desc = "[S]earch [K]eymaps" })
-		keymap.set("n", "<leader>ss", tb.builtin, { desc = "[S]earch [S]elect Telescope" })
+		-- keymap.set("n", "<leader>ss", tb.builtin, { desc = "[S]earch [S]elect Telescope" })
 		keymap.set("n", "<leader>sd", tb.diagnostics, { desc = "[S]earch [D]iagnostics" })
-		keymap.set("n", "<leader><leader>", tb.buffers, { desc = "[ ] Find existing buffers" })
+		keymap.set("n", "<leader>sb", tb.buffers, { desc = "[ ] Find existing buffers" })
 
     -- Slightly advanced example of overriding default behavior and theme
     keymap.set('n', '<leader>/', function()
@@ -80,10 +81,10 @@ return {
 
 		local opts = { noremap = true, silent = true }
 
-		keymap.set("n", "<leader>S", function()
-			tb.live_grep({ additional_args = { "-L" } })
-		end, opts)
-		keymap.set("v", "<leader>S", function()
+		-- keymap.set("n", "<leader>G", function()
+		-- 	tb.live_grep({ additional_args = { "-L" } })
+		-- end, opts)
+		keymap.set("v", "<leader><leader>", function()
 			local text = vim.getVisualSelection()
 			tb.live_grep({ default_text = text })
 		end, opts)

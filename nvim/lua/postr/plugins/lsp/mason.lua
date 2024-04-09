@@ -7,12 +7,8 @@ return {
     "jay-babu/mason-nvim-dap.nvim",
 	},
 	config = function()
-		-- import mason
 		local mason = require("mason")
-
-		-- import mason-lspconfig
 		local mason_lspconfig = require("mason-lspconfig")
-
 		local mason_tool_installer = require("mason-tool-installer")
 		local mason_dap = require("mason-nvim-dap")
     local mason_dap = require("mason-nvim-dap")

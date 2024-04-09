@@ -4,9 +4,9 @@ local keymap = vim.keymap
 
 
 -- buffer movement
-keymap.set("n", "<leader>]", vim.cmd.bnext)
-keymap.set("n", "<leader>[", vim.cmd.bprevious)
-keymap.set("n", "<leader>W", vim.cmd.bdelete)
+keymap.set("n", "<leader>]", vim.cmd.bnext, { desc = "Next buffer"})
+keymap.set("n", "<leader>[", vim.cmd.bprevious, { desc = "Previous biffer"})
+keymap.set("n", "<leader>w", vim.cmd.bdelete, { desc = "Delete buffer"})
 
 -- copy all and select all
 keymap.set("n", "<D-a>", "gg<S-v>G")

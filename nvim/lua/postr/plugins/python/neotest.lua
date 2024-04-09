@@ -11,6 +11,10 @@ return {
 	config = function()
 		local neotest = require("neotest")
 
+		local allure_path = function()
+      -- local = vim.fn.getcwd()
+			return "--alluredir=" .. print(vim.loop.cwd()) .. "/results"
+		end
 		neotest.setup({
 
 			-- Run the nearest test
@@ -39,7 +43,7 @@ return {
 
 			--Stop the nearest test, see :h neotest.run.stop()
 			vim.keymap.set("n", "<leader>ts", "<cmd>lua require('neotest').run.stop()<CR>", { desc = "[T]est [S]top" }),
-			--
+
 			--Attach to the nearest test, see :h neotest.run.attach()
 			--require("neotest").run.attach()
       --
@@ -48,6 +52,21 @@ return {
     -- lua require("neotest").output_panel.toggle()
 
     -- lua require("neotest").output_panel.clear()
+			-- Test output panel
+			vim.keymap.set(
+				"n",
+				"<leader>to",
+				"<cmd>lua require('neotest').output_panel.toggle()<CR>",
+				{ desc = "[T]est [O]tput" }
+			),
+
+			-- Test output panel clear
+			vim.keymap.set(
+				"n",
+				"<leader>tx",
+				"<cmd>lua require('neotest').output_panel.clear()<CR>",
+				{ desc = "[T]est Clear" }
+			),
 
 
 			output = {
@@ -74,18 +93,9 @@ return {
 					args = { "-sv" }, -- alluredir
 					-- Runner to use. Will use pytest if available by default.
 					-- Can be a function to return dynamic value.
+					args = { "-sv" },
+          -- args = function() allure_path() end ,
 					runner = "pytest",
-					-- Custom python path for the runner.
-					-- Can be a string or a list of strings.
-					-- Can also be a function to return dynamic value.
-					-- If not provided, the path will be inferred by checking for
-					-- virtual envs in the local directory and for Pipenev/Poetry configs
-
-					-- Returns if a given file path is a test file.
-					-- NB: This function is called a lot so don't perform any heavy tasks within it.
-					-- is_test_file = function(file_path)
-					--   ...
-					-- end,
 					-- -- !!EXPERIMENTAL!! Enable shelling out to `pytest` to discover test
 					-- instances for files containing a parametrize mark (default: false)
 					pytest_discover_instances = true,

@@ -32,9 +32,9 @@ return {
 					return "modulename", args
 				end
 
-				vim.keymap.set("n", "<leader>dp", function() require("dap-python").test_method() end, { desc = "Pytest method" })
-				vim.keymap.set("n", "<leader>pc", function() require("dap-python").test_class() end, { desc = "Pytest class" })
-				vim.keymap.set("v", "<leader>ps", function() require("dap-python").debug_selection() end, { desc = "Pytest section" })
+				-- vim.keymap.set("n", "<leader>dp", function() require("dap-python").test_method() end, { desc = "Pytest method" })
+				-- vim.keymap.set("n", "<leader>pc", function() require("dap-python").test_class() end, { desc = "Pytest class" })
+				-- vim.keymap.set("v", "<leader>ps", function() require("dap-python").debug_selection() end, { desc = "Pytest section" })
 			end,
 		},
 	},
@@ -57,9 +57,12 @@ return {
 		-- end
 
 		vim.fn.sign_define("DapBreakpoint", { text = "●", texthl = "DapBreakpoint", linehl = "", numhl = "" })
+		vim.keymap.set("n", "<F8>", ":DapToggleBreakpoint<CR>", { desc = "Toogle [B]reakpoint" })
 		vim.keymap.set("n", "<leader>b", ":DapToggleBreakpoint<CR>", { desc = "Toogle [B]reakpoint" })
+		vim.keymap.set("n", "<F2>", ":DapContinue<CR>", { desc = "[D]ap [C]ontinue" })
 		vim.keymap.set("n", "<leader>dc", ":DapContinue<CR>", { desc = "[D]ap [C]ontinue" })
 		vim.keymap.set("n", "<leader>dt", function() dapui.close() end, { desc = "[D]ap [T]erminate" })
+		vim.keymap.set("n", "<F9>", ":DapStepOver<CR>", { desc = "[D]ap [S]tep over" })
 		vim.keymap.set("n", "<leader>ds", ":DapStepOver<CR>", { desc = "[D]ap [S]tep over" })
 
 		-- Python
