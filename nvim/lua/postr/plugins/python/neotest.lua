@@ -42,18 +42,36 @@ return {
 			--
 			--Attach to the nearest test, see :h neotest.run.attach()
 			--require("neotest").run.attach()
+      --
+      --
+      --
+    -- lua require("neotest").output_panel.toggle()
 
-			-- neotest.Config.output_pannel({ enabled = true }), --, 'lua require("neotest").output_panel.open()')
+    -- lua require("neotest").output_panel.clear()
 
+
+			output = {
+				enabled = false,
+        quiet = true,
+        last_run = true,
+        auto_close = true,
+				-- open_on_run = "short",
+			},
+			output_panel = {
+				enabled = true,
+				open = "bot split | resize 15",
+			},
 			adapters = {
 				require("neotest-python")({
 					-- Extra arguments for nvim-dap configuration
 					-- See https://github.com/microsoft/debugpy/wiki/Debug-configuration-settings for values
-					dap = { justMyCode = false },
+					dap = {
+            justMyCode = false,
+            console = "integratedTerminal",
+          },
 					-- Command line arguments for runner
 					-- Can also be a function to return dynamic values
-					args = { "-sv" },  -- alluredir
-					args = { "-sv", "--alluredir=./results" },
+					args = { "-sv" }, -- alluredir
 					-- Runner to use. Will use pytest if available by default.
 					-- Can be a function to return dynamic value.
 					runner = "pytest",
