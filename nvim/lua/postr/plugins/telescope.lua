@@ -32,7 +32,7 @@ return {
 		-- set keymaps
 		local keymap = vim.keymap
 
-		keymap.set("n", "<leader>fh", tb.help_tags, { desc = "[F]ind [H]elp" })
+		keymap.set("n", "<leader>sq", tb.help_tags, { desc = "[S]earch [Q]uestions" })
 		keymap.set("n", "<leader>sf", tb.find_files, { desc = "[S]earch [F]iles" })
 		keymap.set("n", "<leader><leader>", function() tb.live_grep({ additional_args = { "-L" } }) end, { desc = "[S]earch by [G]rep" })
 		keymap.set("n", "<leader>sg", function() tb.live_grep({ additional_args = { "-L" } }) end, { desc = "[S]earch by [G]rep" })

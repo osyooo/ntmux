@@ -44,7 +44,7 @@ return {
       keymap.set("n", "<leader>D", "<cmd>Telescope diagnostics bufnr=0<CR>", opts) -- show  diagnostics for file
 
       opts.desc = "Show line diagnostics"
-      keymap.set("n", "<leader>d", vim.diagnostic.open_float, opts) -- show diagnostics for line
+      keymap.set("n", "<leader>ld", vim.diagnostic.open_float, opts) -- show diagnostics for line
 
       opts.desc = "Go to previous diagnostic"
       keymap.set("n", "[d", vim.diagnostic.goto_prev, opts) -- jump to previous diagnostic in buffer
@@ -75,10 +75,13 @@ return {
 			filetypes = { "python" },
 			settings = {
 				python = {
+          executionEnvironments = {
+            root = '~/Desktop/Autotests/project_api_tests/',
+            extraPaths = '~/Desktop/Autotests/project_api_tests/api_sync_lib'
+          },
 					analysis = {
 						autoImportCompletions = true,
 						diagnosticMode = "workspace",
-						extraPaths = { "~/Desktop/Autotests/api_sync_lib/" },
             autoSearchPaths = true
 					},
 				},
@@ -87,32 +90,6 @@ return {
 			on_attach = on_attach,
 			-- root_dir = lspconfig.util.root_pattern("~/Desktop/Autotests/sandbox_api_sync_lib/"),
 		})
-    -- configure python server
-    lspconfig["pyright"].setup({
-      filetypes = { "python" },
-      settings = {
-        python = {
-          analysis = {
-            autoImportCompletions = true,
-            diagnosticMode = "workspace",
-            -- extraPaths = { "~/Desktop/Autotests/api_sync_lib" },
-            autoSearchPaths = true,
-
-
-            -- extraPaths = "" maybe for externallib
-          },
-        },
-      },
-      capabilities = capabilities,
-      on_attach = on_attach,
-    })
-
-    -- lspconfig["jedi_language_server"].setup({
-    --   filetypes = { "python" },
-    --   cmd = { "jedi-language-server" },
-    --   capabilities = capabilities,
-    --   on_attach = on_attach,
-    -- })
 
     -- configure lua server (with special settings)
     lspconfig["lua_ls"].setup({
