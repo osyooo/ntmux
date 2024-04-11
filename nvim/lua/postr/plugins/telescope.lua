@@ -23,12 +23,11 @@ return {
 				},
 			},
 			defaults = {
-				path_display = { "shorten" },
+				path_display = { "smart" },
 				mappings = {
 					i = {
 						["<C-k>"] = actions.move_selection_previous, -- move to prev result
 						["<C-j>"] = actions.move_selection_next, -- move to next result
-						["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
 					},
 				},
 			},
@@ -57,7 +56,7 @@ return {
 		end, { desc = "[/] Fuzzily search in current buffer" })
 
 		-- Also possible to pass additional configuration options.
-		--  See `:help telescope.builtin.live_grep()` for information about particular keys
+		-- See `:help telescope.builtin.live_grep()` for information about particular keys
 		keymap.set("n", "<leader>s/", function()
 			tb.live_grep({
 				grep_open_files = true,
@@ -86,9 +85,6 @@ return {
 
 		local opts = { noremap = true, silent = true }
 
-		-- keymap.set("n", "<leader>G", function()
-		-- 	tb.live_grep({ additional_args = { "-L" } })
-		-- end, opts)
 		keymap.set("v", "<leader><leader>", function()
 			local text = vim.getVisualSelection()
 			tb.live_grep({ default_text = text })
