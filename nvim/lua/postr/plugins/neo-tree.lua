@@ -17,8 +17,8 @@ return {
 
 		neo.setup({
 			close_if_last_window = true,
-      enable_git_status = true,
-      enable_diagnostics = true,
+			enable_git_status = true,
+			enable_diagnostics = true,
 			default_component_configs = {
 				container = {
 					enable_character_fade = true,
@@ -121,8 +121,9 @@ return {
 					},
 				},
 			},
-			vim.keymap.set("n", "<leader>ee", "<cmd>Neotree toggle<CR>"),
-			vim.keymap.set("n", "<leader>ec", "<cmd>Neotree close<CR>"),
+			vim.keymap.set("n", "<leader>ee", "<cmd>Neotree toggle<CR>", { desc = "Neotree toogle" }),
+			vim.keymap.set("n", "<leader>ef", "<cmd>Neotree reveal<CR>", { desc = "Neotree focus to file" }),
+			vim.keymap.set("n", "<leader>ec", "<cmd>Neotree close<CR>", { desc = "Neotree close" }),
 		})
 	end,
 }

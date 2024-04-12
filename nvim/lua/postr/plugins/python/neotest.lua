@@ -60,7 +60,7 @@ return {
             console = "integratedTerminal",
           },
 					args = { "-sv" },
-          python = require('venv-selector').get_active_venv(),
+          python = require('venv-selector').get_active_path(),
 					runner = "pytest",
 					-- -- !!EXPERIMENTAL!! Enable shelling out to `pytest` to discover test
 					-- instances for files containing a parametrize mark (default: false)
