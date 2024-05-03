@@ -57,10 +57,26 @@ return {
 
 			opts.desc = "Restart LSP"
 			keymap.set("n", "<leader>rs", ":LspRestart<CR>", opts) -- mapping to restart lsp if necessary
+
+      opts.desc = "Hide diagnostic"
+      keymap.set('n', "<leader>lh", vim.diagnostic.hide, opts)
+
+      opts.desc = "Show diagnostic"
+      keymap.set('n', "<leader>lr", vim.diagnostic.reset, opts)
+
 		end
 
 		-- used to enable autocompletion (assign to every lsp server config)
 		local capabilities = cmp_nvim_lsp.default_capabilities()
+
+
+     vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+       vim.lsp.diagnostic.on_publish_diagnostics, {
+         underline = false,
+         update_in_insert = false,
+       }
+     )
+
 
 		-- Change the Diagnostic symbols in the sign column (gutter)
 		-- (not in youtube nvim video)
