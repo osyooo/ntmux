@@ -41,7 +41,7 @@ return {
 
 
 			output = {
-				enabled = false,
+				enabled = true,
         quiet = true,
         last_run = true,
         auto_close = true,

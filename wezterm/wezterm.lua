@@ -18,7 +18,8 @@ config.background = {
 }
 
 config.color_scheme = "rose-pine-moon"
-config.font = wezterm.font("JetBrains Mono")
+config.font = wezterm.font("JetBrains Mono", { italic = false })
+config.harfbuzz_features = { 'calt=0', 'clig=0', 'liga=0' }
 config.font_size = 20
 config.line_height = 1.2
 -- config.window_decorations = "NONE"

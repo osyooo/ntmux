@@ -62,6 +62,8 @@ return {
           enable_autocmd = false,
         },
       })
+
+      vim.cmd([[hi @method.call.python guifg=white]])
     end,
   },
 }

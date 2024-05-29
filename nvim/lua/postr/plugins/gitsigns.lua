@@ -16,9 +16,10 @@ return {
 			signcolumn = true, -- Toggle with `:Gitsigns toggle_signs`
 			auto_attach = true,
 
-			vim.keymap.set("n", "<leader>gb", gs.toggle_current_line_blame, { desc = "[G]it [B]lame" }),
+			vim.keymap.set("n", "<leader>gB", gs.toggle_current_line_blame, { desc = "[G]it [B]lame" }),
 			vim.keymap.set("n", "<leader>gp", gs.preview_hunk, { desc = "[G]it [P]review" }),
 			vim.keymap.set("n", "<leader>gd", gs.diffthis, { desc = "[G]it [D]iff" }),
+      vim.keymap.set('n', '<leader>hD', function() gs.diffthis('~') end, { desc = "[G]it [D]iff this"}),
 		})
 	end,
 }

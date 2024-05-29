@@ -35,7 +35,7 @@ return {
         ["<C-f>"] = cmp.mapping.scroll_docs(4),
         ["<C-Space>"] = cmp.mapping.complete(), -- show completion suggestions
         ["<C-e>"] = cmp.mapping.abort(), -- close completion window
-        ["<Tab>"] = cmp.mapping.confirm({
+        ["<C-i>"] = cmp.mapping.confirm({
                     behavior = cmp.ConfirmBehavior.Insert,
                     select = true }),
       }),

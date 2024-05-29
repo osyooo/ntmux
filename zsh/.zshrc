@@ -24,7 +24,6 @@ zstyle ':omz:update' mode auto      # update automatically without asking
 
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-    git
     zsh-autosuggestions
     poetry
     zsh-syntax-highlighting
@@ -50,7 +49,22 @@ fi
 
 # Set personal aliases
 bindkey '^o' autosuggest-execute
-bindkey "ç" fzf-cd-widget
+
+# Git aliases
+alias gcwl="git rev-list HEAD ^master | wc -l"
+alias gcam="git commit --all --message"
+alias gc="git commit --verbose"
+alias gcan!="git commit --verbose --all --no-edit --amend"
+alias gst="git status"
+alias gsta="git stash save"
+alias gstaa="git stash apply"
+alias gb="git branch"
+alias gco="git checkout"
+alias gcb="git checkout -b"
+alias gaa="git add --all"
+alias gf="git fetch"
+alias gl="git pull"
+alias gp="git push"
 
 alias ls="colorls"
 alias ll="colorls -l"
@@ -58,14 +72,42 @@ alias d="docker"
 alias dc="docker-compose"
 alias poe="poetry"
 alias nv="nvim"
-
+alias python3="/opt/homebrew/Cellar/python@3.11/3.11.4_1/bin/python3"
 alias gcwl="git rev-list HEAD ^master | wc -l"
+#alias poenv="source $(poetry env info --path)/bin/activate"
+alias resconsul="brew services restart ati-consul"
 
-export FZF_DEFAULT_OPTS='--height 40%'
+export ENVIRONMENT="dev"
 
 export HOMEBREW_NO_AUTO_UPDATE="1"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# Set up fzf key bindings and fuzzy completion
+eval "$(fzf --zsh)"
+
+export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix --exclude .git __pycache__'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_DEFAULT_OPTS='--height 40%'
+export FZF_ALT_C_COMMAND='fd --type=d --hiden --strip-cwd-prefix --exclude .git __pycache__'
+# Use fd (https://github.com/sharkdp/fd) for listing path candidates.
+# - The first argument to the function ($1) is the base path to start traversal
+# - See the source code (completion.{bash,zsh}) for the details.
+_fzf_compgen_path() {
+  fd --hidden --follow --exclude ".git" . "$1"
+}
+
+# Use fd to generate the list for directory completion
+_fzf_compgen_dir() {
+  fd --type d --hidden --follow --exclude ".git" . "$1"
+}
+
+
+# Bat
+alias cat="bat"
+export BAT_THEME="Nord"
+
+# Zoxide
+eval "$(zoxide init zsh)"
+alias cd='z' -f ~/.fzf.zsh ] && source ~/.fzf.zsh
