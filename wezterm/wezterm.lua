@@ -10,7 +10,7 @@ config.max_fps = 60
 config.macos_window_background_blur = 5
 config.background = {
 	{
-    source = {Color="#232136"},
+    source = {Color="#222130"},
 		width = "100%",
 		height = "100%",
 		opacity = 0.9,
@@ -18,7 +18,7 @@ config.background = {
 }
 
 config.color_scheme = "rose-pine-moon"
-config.font = wezterm.font("JetBrains Mono", { italic = false })
+config.font = wezterm.font("JetBrains Mono", { italic = false, bold = true })
 config.harfbuzz_features = { 'calt=0', 'clig=0', 'liga=0' }
 config.font_size = 20
 config.line_height = 1.2
@@ -72,7 +72,7 @@ config.mouse_bindings = {
 	-- Ctrl-click will open the link under the mouse cursor
 	{
 		event = { Up = { streak = 1, button = "Left" } },
-		mods = "CTRL",
+		mods = "CMD",
 		action = wezterm.action.OpenLinkAtMouseCursor,
 	},
 	-- Disable the Ctrl-click down event to stop programs from seeing it when a URL is clicked
@@ -89,7 +89,7 @@ config.keys = {
 		key = "b",
 		mods = "CMD",
 		action = wezterm.action.OpenLinkAtMouseCursor,
-	},
+	}
 }
 
 -- and finally, return the configuration to wezterm

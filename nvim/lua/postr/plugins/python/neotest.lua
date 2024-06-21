@@ -1,6 +1,7 @@
 return {
 	"nvim-neotest/neotest",
 	dependencies = {
+    "linux-cultist/venv-selector.nvim",
 		"nvim-neotest/nvim-nio",
 		"nvim-lua/plenary.nvim",
 		"antoinemadec/FixCursorHold.nvim",
@@ -25,48 +26,49 @@ return {
 			--Stop the nearest test, see :h neotest.run.stop()
 			vim.keymap.set("n", "<leader>ts", "<cmd>lua require('neotest').run.stop()<CR>", { desc = "[T]est [S]top" }),
 
-			--Attach to the nearest test, see :h neotest.run.attach()
-			--require("neotest").run.attach()
-      --
-      --
-      --
-    -- lua require("neotest").output_panel.toggle()
+      vim.keymap.set("n", "<leader>tw", "<cmd>lua require('neotest').watch.toggle(vim.fn.expand('%'))<CR>", { desc = "[T]est [W]atch" }),
+			vim.keymap.set("n", "<leader>tS", "<cmd>lua require('neotest').summary.toggle()<CR>", { desc = "[T]est [S]ummary toggle" }),
 
-    -- lua require("neotest").output_panel.clear()
-			-- Test output panel
 			vim.keymap.set( "n", "<leader>to", "<cmd>lua require('neotest').output_panel.toggle()<CR>", { desc = "[T]est [O]tput" }),
 
 			-- Test output panel clear
 			vim.keymap.set( "n", "<leader>tx", "<cmd>lua require('neotest').output_panel.clear()<CR>", { desc = "[T]est Clear" }),
 
-
+      status = { virtual_text = true },
 			output = {
 				enabled = true,
-        quiet = true,
-        last_run = true,
-        auto_close = true,
-				-- open_on_run = "short",
+			     quiet = true,
+			     last_run = true,
+			     auto_close = true,
+           open_on_run = "short",
 			},
 			output_panel = {
 				enabled = true,
-				open = "bot split | resize 15",
+				open = "bot split | resize 10",
 			},
 			adapters = {
 				require("neotest-python")({
-					-- Extra arguments for nvim-dap configuration
-					-- See https://github.com/microsoft/debugpy/wiki/Debug-configuration-settings for values
 					dap = {
-            justMyCode = false,
-            console = "integratedTerminal",
-          },
-					args = { "-sv" },
-          python = require('venv-selector').get_active_path(),
+						justMyCode = false,
+						console = "integratedTerminal",
+					},
+					args = { "-sv", "--log-level", "DEBUG" },
+					python = require("venv-selector").get_active_path(),
 					runner = "pytest",
-					-- -- !!EXPERIMENTAL!! Enable shelling out to `pytest` to discover test
-					-- instances for files containing a parametrize mark (default: false)
-					pytest_discover_instances = true,
 				}),
 			},
 		})
+
+    local neotest_ns = vim.api.nvim_create_namespace("neotest")
+    vim.diagnostic.config({
+      virtual_text = {
+        format = function(diagnostic)
+          -- Replace newline and tab characters with space for more compact diagnostics
+          local message = diagnostic.message:gsub("\n", " "):gsub("\t", " "):gsub("%s+", " "):gsub("^%s+", "")
+          return message
+        end,
+      },
+    }, neotest_ns)
+
 	end,
 }
